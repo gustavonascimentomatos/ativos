@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://hospitalorizonti.com.br/wp-content/uploads/2024/04/Orizonti-Hospital_logo-final-color-1-1.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Ativos</title>
+</head>
+<body>
+    <nav id="navbar">
+        <a href="/" id="logo">
+            <img src="https://hospitalorizonti.com.br/wp-content/uploads/2024/04/Orizonti-Hospital_logo-final-color-1-1.png" alt="" srcset="Logo de lampada">
+        </a>
+        <ul>
+            <li><a href="/">Equipamentos</a></li>
+            <!-- URLs apos autenticação -->
+            {{#if session.userid}}
+                <li><a href="/toughts/dashboard">Dashboard</a></li>
+                <li><a href="/logout">({{session.username}}) Sair</a></li>
+            {{else}}
+                <li><a href="/login">Entrar</a></li>
+                <li><a href="/register">Registrar</a></li>
+            {{/if}}
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Mensagens-->
+
+        {{#if messages.message}}
+            <div class="flash-message">
+                {{messages.message}}
+                <div class="progress-bar"></div>
+            </div>
+        {{/if}}
+
+        {{{ body }}}
+    </div>
+    
+    <footer class="footer">
+        <p id="create">Dezembro/2024</p>
+    </footer>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const flashMessage = document.querySelector('.flash-message');
+        if (flashMessage) {
+            // Remove a mensagem após 4 segundos (tempo da animação)
+            setTimeout(() => {
+                flashMessage.remove();
+            }, 4000);
+        }
+    });
+</script>
+
+</html>

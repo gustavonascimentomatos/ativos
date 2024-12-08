@@ -1,0 +1,39 @@
+<div class="home-header">
+    {{#if search}}
+        <h1>Você esta buscando por: <span>{{search}}</span></h1>
+        {{#if toughtsQty}}
+            <p>Foram encotrados <span>{{toughtsQty}}</span> resultados para <span>{{search}}</span></p>
+        {{else}}
+            <p>Nenhum pensamento foi encontrado para o termo: <span>{{search}}</span></p>
+        {{/if}}
+    {{/if}}
+    <form action="/" method="GET">
+        <input type="text" name="search" placeholder="Está buscando por algo?">
+        <input type="submit" class="btn" value="Buscar">
+    </form>
+    <div class="order-container">
+        <span>Ordenar por:</span>
+        <form action="/">
+            <input type="hidden" name="search" value="{{this.search}}">
+            <input type="hidden" name="order" value="new">
+            <button type="submit"><i class="bi bi-arrow-up"></i></button>
+        </form>
+        <form action="/">
+            <input type="hidden" name="search" value="{{this.search}}">
+            <input type="hidden" name="order" value="old">
+            <button type="submit"><i class="bi bi-arrow-down"></i></button>
+        </form>
+        <a href="/">Limpar</a>
+    </div>
+</div>
+<div class="toughts-container">
+    {{#each toughts}}
+        <figure>
+            <blockquote>
+                Patrimonio: <a href="/toughts/edit/{{this.id}}">{{this.patrimonio}}</a>
+            </blockquote>
+            <figcaption>Usuário: <span>{{this.User.name}}</span></figcaption>
+            <figcaption>Localização: <span>{{this.localizacao}}</span></figcaption>
+        </figure>
+    {{/each}}
+</div>

@@ -1,0 +1,43 @@
+<div class="tought-form-container">
+    <h1>Cadastrar Equipamento:</h1>
+    <form action="/toughts/add" method="POST">
+        <div class="form-control">
+            <label for="patrimonio">Patrimonio:</label>
+            <input type="text" name="patrimonio" placeholder='"Digite o patrimonio..."'>
+        </div>
+        <div class="form-control">
+            <label for="marca">Marca:</label>
+            <input type="text" name="marca" placeholder='"Digite a marca..."'>
+        </div>
+        <div class="form-control">
+            <label for="modelo">Modelo:</label>
+            <input type="text" name="modelo" placeholder='"Digite o modelo..."'>
+        </div>
+        <div class="form-control">
+            <label for="serial">Serial:</label>
+            <input type="text" name="serial" placeholder='"Digite o serial..."'>
+        </div>
+        <div class="form-control">
+            <label for="aquisicao">Aquisição:</label>
+            <input type="date" name="aquisicao" placeholder='"Digite o aquisicao..."'>
+        </div>
+        <div class="form-control">
+            <label for="responsavel_atual">Responsável Atual:</label>
+            <select id="option" name="responsavel_atual" id="responsavel_atual" required>
+                <option value="" disabled selected>Selecione um responsável...</option>
+                {{#each users}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-control">
+            <label for="localizacao">Localização:</label>
+            <input type="text" name="localizacao" placeholder='"Digite a localizacao..."'>
+        </div>
+        <div class="form-control">
+            <label for="observacao">Observação:</label>
+            <input type="text" name="observacao" placeholder='"observacao..."'>
+        </div>
+        <input type="submit" value="Cadastrar Equipamento" id="create-tought">
+    </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="dashboard">
+
+    <div class="title-container">
+        <h2>Dashboard</h2>
+        <a href="/toughts/adduser" class="btn">Cadastrar Usuário</a>
+        <a href="/toughts/add" class="btn">Cadastrar Equipamento</a>
+    </div>
+    <h3>Equipamentos</h3>
+    <ul>
+        {{#each toughts}}
+            <li>
+                <span class="label">Patrimonio: {{this.patrimonio}}</span>
+                <span class="actions">
+                    <a href="/toughts/edit/{{this.id}}" class="btn">Editar</a>
+                    <form action="/toughts/remove" method="post">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" value="Excluir" class="btn">
+                    </form>
+                </span>
+            </li>
+        {{/each}}
+    </ul>
+    {{#if emptyToughts}}
+        <p>Não há equipamentos cadastrados, comece a cadastrar <i><a href="/toughts/add">por aqui!</a></i></p>
+    {{/if}}
+</div>
