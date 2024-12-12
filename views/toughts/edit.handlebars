@@ -19,19 +19,6 @@
             <input type="text" name="serial" placeholder='"Digite o serial..."' value="{{tought.serial}}">
         </div>
         <div class="form-control">
-            <label for="aquisicao">Aquisição</label>
-            <input type="date" name="aquisicao" placeholder='"Digite o aquisicao..."' value="{{tought.aquisicao}}">
-        </div>
-        <div class="form-control">
-            <label for="responsavel_atual">Responsável Atual:</label>
-            <select id="option" name="responsavel_atual" id="responsavel_atual" required>
-                <option value="" disabled selected>Selecione um responsável...</option>
-                {{#each users}}
-                    <option value="{{this.id}}">{{this.name}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <div class="form-control">
             <label for="localizacao">Localizaçãoo:</label>
             <input type="text" name="localizacao" placeholder='"Digite a localizacao..."' value="{{tought.localizacao}}">
         </div>

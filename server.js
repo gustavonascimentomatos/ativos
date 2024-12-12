@@ -9,9 +9,11 @@ import flash from 'express-flash';
 
 import Tought from './models/Toughts.js';
 import User from './models/User.js';
+import Emprestimo from './models/Emprestimo.js';
 
 import toughtsRoute from './routes/toughtsRouter.js';
 import authsRoute from './routes/authsRoutes.js';
+import emprestimoRoute from './routes/emprestimoRoutes.js'
 import ToughtController from './controllers/ToughtController.js';
 import AuthController from './controllers/AuthController.js';
 
@@ -59,10 +61,12 @@ app.use(express.json());    // Definição para leitura de arquivos JSON
 
 // Routes
 app.use('/toughts', toughtsRoute);
+app.use('/emprestimo', emprestimoRoute)
 app.use('/', authsRoute);
 app.get('/', ToughtController.showToughts);
 
 connection
+    //.sync({force: true})
     .sync()
     .then(() => {
         app.listen(port, () => {

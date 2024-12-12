@@ -65,6 +65,7 @@ class AuthController {
         try {
             const createdUser = await User.create(user); // Cria usuario
             req.session.userid = createdUser.id; // initialize session
+            req.session.username = user.name;
             req.flash('message', 'Cadastro realizado com sucesso!'); // Exibe mensagem de sucesso!
             req.session.save(() => { res.redirect('/') }); // salvar sessão
         } catch (error) {

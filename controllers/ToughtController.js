@@ -86,15 +86,13 @@ class ToughtController {
 
     static async createToughtSave(req, res){
         const tought = {
-            UserId: req.body.responsavel_atual,
             patrimonio: req.body.patrimonio,
             marca: req.body.marca,
             modelo: req.body.modelo,
             serial: req.body.serial,
-            aquisicao: req.body.aquisicao,
-            responsavel_atual: req.body.responsavel_atual,
             localizacao: req.body.localizacao,
             observacao: req.body.observacao,
+            emprestado: false
         }
         try {
             await Toughts.create(tought);
@@ -125,20 +123,16 @@ class ToughtController {
 
         const usersData = await User.findAll();
         const users = usersData.map((result) => result.get({ plain: true }));
-
-        res.render('toughts/edit', { tought, users }); 
+        res.render('toughts/edit', { tought, users, id}); 
     }
 
     static async updateTouhtSave(req, res) {
         const id = req.body.id;
         const tought = {
-            UserId: req.body.responsavel_atual,
             patrimonio: req.body.patrimonio,
             marca: req.body.marca,
             modelo: req.body.modelo,
             serial: req.body.serial,
-            aquisicao: req.body.aquisicao,
-            responsavel_atual: req.body.responsavel_atual,
             localizacao: req.body.localizacao,
             observacao: req.body.observacao,
         }
@@ -151,6 +145,13 @@ class ToughtController {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    static async showProduto(req, res) {
+        const id = req.params.id;
+        const tought = await Toughts.findOne({  where: { id }, raw: true });
+        res.render('toughts/produto', tought)
+
     }
 }
 

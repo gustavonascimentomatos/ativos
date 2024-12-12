@@ -30,10 +30,27 @@
     {{#each toughts}}
         <figure>
             <blockquote>
-                Patrimonio: <a href="/toughts/edit/{{this.id}}">{{this.patrimonio}}</a>
+                <form  action="/toughts/{{this.id}}" method="GET">
+                    <input type="hidden" name="id" value="{{this.search}}">
+                    Patrimonio: <a href="/toughts/{{this.id}}">{{this.patrimonio}}</a>
+                    <input type="submit" value="Ver" id="pequeno">
+                </form>
+                <form  action="/toughts/edit/{{this.id}}" method="GET">
+                    <input type="hidden" name="id" value="{{this.search}}">
+                    <input type="submit" value="Editar" id="pequeno">
+                </form>
+                {{#if this.emprestado}}
+                    <form  action="/emprestimo/add" method="GET">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" value="Recolher" id="pequeno">
+                    </form>
+                {{else}}
+                    <form  action="/emprestimo/add/{{this.id}}" method="GET">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" value="Emprestar" id="pequeno">
+                    </form>
+                {{/if}}
             </blockquote>
-            <figcaption>Usuário: <span>{{this.User.name}}</span></figcaption>
-            <figcaption>Localização: <span>{{this.localizacao}}</span></figcaption>
         </figure>
     {{/each}}
 </div>

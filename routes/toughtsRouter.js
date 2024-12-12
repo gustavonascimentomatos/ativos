@@ -12,6 +12,10 @@ router.get('/dashboard', checkAuth, ToughtController.dashboard);
 router.post('/remove', checkAuth, ToughtController.removeTought);
 router.get('/adduser', checkAuth, checkAuth, ToughtController.createUser);
 router.post('/adduser', checkAuth, checkAuth, ToughtController.createUserSave);
+router.get('/:id', checkAuth, ToughtController.showProduto)
 router.get('/', ToughtController.showToughts);
+
+
+
 
 export default router;

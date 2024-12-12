@@ -15,21 +15,20 @@ const Tought = db.define('Tought', {
     serial: {
         type: DataTypes.STRING
     },
-    aquisicao: {
-        type: DataTypes.DATE
-    },
-    responsavel_atual: {
-        type: DataTypes.STRING
-    },
     localizacao: {
         type: DataTypes.STRING
     },
     observacao: {
         type: DataTypes.STRING
     },
+    emprestado: {
+        type: DataTypes.BOOLEAN,
+        require: true
+    }
 });
 
 Tought.belongsTo(User);
 User.hasMany(Tought);
+
 
 export default Tought;

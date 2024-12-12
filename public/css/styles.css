@@ -129,6 +129,7 @@
     border: 1px solid #c24827 !important;
 }
 
+
 form input[type='submit'],
 .btn {
   background-color: transparent;
@@ -144,6 +145,18 @@ form input[type='submit'],
   transition: 0.5s;
 }
 
+#pequeno {
+    padding: 4px;
+    color: #c24827;
+    border: 2px solid r#c24827;
+    font-size: .6em;
+}
+
+#pequeno:hover {
+    background-color: #c24827;
+    color: #fff;
+}
+
 form input[type='submit']:hover,
 .btn:hover {
     background-color: #c24827;
@@ -152,6 +165,13 @@ form input[type='submit']:hover,
 
 form p {
     text-align: center;
+}
+
+.toughts-container figure blockquote {
+    display: flex; /* Torna os formulários flexíveis */
+    gap: 10px; /* Espaçamento horizontal entre os formulários */
+    justify-content: center; /* Centraliza os formulários dentro do container */
+    align-items: center; /* Alinha verticalmente */
 }
 
 /* CREATE / EDIT FORM */
