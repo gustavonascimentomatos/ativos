@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection.js';
-import User from './User.js';
 
 const Tought = db.define('Tought', {
     patrimonio: {
@@ -26,9 +25,5 @@ const Tought = db.define('Tought', {
         require: true
     }
 });
-
-Tought.belongsTo(User);
-User.hasMany(Tought);
-
 
 export default Tought;

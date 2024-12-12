@@ -3,6 +3,7 @@ import Toughts from '../models/Toughts.js';
 import User from '../models/User.js';
 import Emprestimo from '../models/Emprestimo.js';
 import { Op } from 'sequelize';
+import Tought from '../models/Toughts.js';
 
 class EmprestimoController {
 
@@ -19,17 +20,14 @@ class EmprestimoController {
 
     static async createEmprestimoSave(req, res) {
 
-        const id = req.body.equipamentoId
+        const id = req.body.ToughtId
         const emprestimo = {
             dataEmprestimo: req.body.dataEmprestimo,
-            userId: req.body.usuario,
-            equipamentoId: req.body.equipamentoId
+            UserId: req.body.usuario,
+            ToughtId: req.body.ToughtId
         }
 
-
-        const tought = {
-            emprestado: true
-        }
+        const tought = { emprestado: true }
 
         try {
             await Emprestimo.create(emprestimo);

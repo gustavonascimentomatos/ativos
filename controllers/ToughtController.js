@@ -2,6 +2,8 @@ import { where } from 'sequelize';
 import Toughts from '../models/Toughts.js';
 import User from '../models/User.js';
 import { Op } from 'sequelize';
+import Emprestimo from '../models/Emprestimo.js';
+import { raw } from 'mysql2';
 class ToughtController {
     static async showToughts(req, res) {
         let search = ''; 
@@ -15,7 +17,6 @@ class ToughtController {
             order = 'DESC';
         }
         const toughtsData = await Toughts.findAll({
-            include: User,
             where: {
                 [Op.or]: [
                     { patrimonio: { [Op.like]: `%${search}%` } },
@@ -39,16 +40,13 @@ class ToughtController {
             where: { 
                 id: userId 
             },
-            include: Toughts,
             plain: true
         });
         if (!user) {
             res.redirect('/login');
         }
 
-        const toughtsData = await Toughts.findAll({
-            include: User,
-        });
+        const toughtsData = await Toughts.findAll();
         const toughts = toughtsData.map((result) => result.get({ plain: true }));
 
         let emptyToughts = false;
@@ -147,12 +145,58 @@ class ToughtController {
         }
     }
 
+/*    
     static async showProduto(req, res) {
         const id = req.params.id;
-        const tought = await Toughts.findOne({  where: { id }, raw: true });
-        res.render('toughts/produto', tought)
+
+
+        const tought = await Toughts.findOne({ raw: true, where: { id } });
+        const emprestimo =  await Emprestimo.findAll({ raw: true, where: {ToughtId: id} })
+        const users =  await User.findAll()
+
+        const emprestimoComUsuario = emprestimo.map(item => {
+            const user = users.find(u => u.id === item.userId);
+            return {
+              ...item,
+              userName: user ? user.name : 'Usuário não encontrado'
+            };
+          })
+
+        res.render('toughts/produto', { tought, emprestimo: emprestimoComUsuario })
 
     }
+
+*/
+
+    static async showProduto(req, res) {
+        const id = req.params.id;
+    
+        try {
+
+            const tought = await Toughts.findOne({ raw: true, where: { id } });
+            const emprestimo = await Emprestimo.findAll({ raw: true, where: { ToughtId: id } });
+    
+            const users = await User.findAll({ raw: true });
+    
+            console.log(emprestimo)
+            console.log(users)
+            // Criando o mapeamento dos empréstimos com os nomes dos usuários
+            const emprestimoComUsuario = emprestimo.map(item => {
+                const user = users.find(u => u.id === item.UserId);
+                return {
+                    ...item,
+                    userName: user ? user.name : 'Usuário não encontrado'
+                };
+            });
+    
+            res.render('toughts/produto', { tought, emprestimo: emprestimoComUsuario });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    
+
+
 }
 
 export default ToughtController;
