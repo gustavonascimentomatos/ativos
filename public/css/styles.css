@@ -377,6 +377,39 @@ form p {
     color: #c24827;
 }
 
+.historico u {
+    display: block;
+    margin-bottom: 2px;
+    text-decoration: none;
+}
+
+.historico li {
+    list-style: none;
+    margin: 2px 0;
+    margin: 2px 0;
+    border-radius: 4px;
+}
+
+.historico li span {
+    color: #c24827;
+    font-weight: bold;
+}
+
+.equipamento  {
+    margin-bottom: 2px;
+
+}
+
+.equipamento span {
+    color: #c24827;
+    font-weight: bold;
+}
+
+.equipamento p {
+padding: 1px 0;
+}
+
+
 
 /* FOOTER */
 footer.footer {

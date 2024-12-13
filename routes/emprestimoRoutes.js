@@ -7,6 +7,9 @@ const router = express.Router()
 router.get('/add/:id', checkAuth, checkAuth, EmprestimoController.createEmprestimo);
 router.post('/add/', checkAuth, checkAuth, EmprestimoController.createEmprestimoSave);
 
+router.get('/remove/:id', checkAuth, checkAuth, EmprestimoController.removeEmprestimo);
+router.post('/remove/', checkAuth, checkAuth, EmprestimoController.removeEmprestimoSave);
+
 
 
 

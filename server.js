@@ -66,7 +66,7 @@ app.use('/', authsRoute);
 app.get('/', ToughtController.showToughts);
 
 connection
-    //.sync({force: true})
+    //.sync({ force: true })
     .sync()
     .then(() => {
         app.listen(port, () => {

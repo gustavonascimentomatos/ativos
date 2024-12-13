@@ -1,0 +1,15 @@
+<div class="tought-form-container">
+    <h1>Cadastrar Devolução:</h1>
+    <form action="/emprestimo/remove" method="POST">
+        <input type="hidden" name="ToughtId" value="{{id}}">
+
+    
+        <div class="form-control">
+            <label for="dataDevolucao">Data do Devolução:</label>
+            <input type="date" name="dataDevolucao" placeholder='"Digite o data do emprestimo..."'>
+        </div>
+        
+        <input type="submit" value="Cadastrar Devoçução" id="create-tought">
+
+    </form>
+</div>

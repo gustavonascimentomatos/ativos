@@ -23,7 +23,8 @@ const Tought = db.define('Tought', {
     emprestado: {
         type: DataTypes.BOOLEAN,
         require: true
-    }
+    },
+    
 });
 
 export default Tought;

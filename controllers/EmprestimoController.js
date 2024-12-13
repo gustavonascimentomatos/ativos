@@ -24,7 +24,8 @@ class EmprestimoController {
         const emprestimo = {
             dataEmprestimo: req.body.dataEmprestimo,
             UserId: req.body.usuario,
-            ToughtId: req.body.ToughtId
+            ToughtId: req.body.ToughtId,
+            ativo: true
         }
 
         const tought = { emprestado: true }
@@ -38,6 +39,52 @@ class EmprestimoController {
         } catch (error) {
             console.log(error);
         }
+    }
+
+
+    static async removeEmprestimo(req, res) {
+        const usersData = await User.findAll();
+        const users = usersData.map((result) => result.get({ plain: true }));
+
+        const toughtsData = await Toughts.findAll();
+        const toughts = toughtsData.map((result) => result.get({ plain: true }));
+        const id =  req.params.id;
+
+        const emprestimo = await Emprestimo.findOne({
+            where: {
+                ToughtId: id, 
+                ativo: 1
+            }, raw: true
+        });
+
+        console.log(emprestimo.ativo)
+
+
+        res.render('emprestimo/remove', {users, toughts, id, emprestimo});
+    }
+
+
+    static async removeEmprestimoSave(req, res) {
+        const id = req.body.ToughtId
+        const emprestimo = {
+            dataDevolucao: req.body.dataDevolucao,
+            ativo: false
+        }
+        const tought = { emprestado: false }
+
+        try {
+            await Emprestimo.update(emprestimo, {
+                where: {
+                    ToughtId: id,
+                    ativo: 1
+                }
+            });
+            await Toughts.update(tought, { where: { id } });
+            res.redirect('/toughts/dashboard');
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
 

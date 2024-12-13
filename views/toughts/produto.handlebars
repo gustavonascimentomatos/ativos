@@ -1,22 +1,23 @@
 
 <h1>Equipamento:</h1>
 
-<p>Patrimonio: {{tought.patrimonio}}</p>
-<p>Marca: {{tought.marca}}</p>
-<p>Modelo: {{tought.modelo}}</p>
-<p>Serial: {{tought.serial}}</p>
-<p>Licalização: {{tought.localizacao}}</p>
-<p>Observação: {{tought.observacao}}</p>
-
+<div class="equipamento">
+    <p><span>Patrimonio: </span>{{tought.patrimonio}}</p>
+    <p><span>Marca: </span>{{tought.marca}}</p>
+    <p><span>Modelo: </span>{{tought.modelo}}</p>
+    <p><span>Serial: </span>{{tought.serial}}</p>
+    <p><span>Licalização: </span>{{tought.localizacao}}</p>
+    <p><span>Observação: </span>{{tought.observacao}}</p>
+</div>
 <br>
 <h1>Histórico</h1>
-
-{{#each emprestimo}}
-    <u>
-        <li>Usuário: {{userName}}</li>
-        <li>Retirada: {{dataEmprestimo}}</li>
-        <li>Devolução: {{dataDevolucao}}</li>
-    </u>
-    <br>
-{{/each}}
-
+<div class="historico">
+    {{#each emprestimo}}
+        <u>
+            <li><span>Usuário:</span> {{userName}}</li>
+            <li><span>Retirada:</span> {{dataEmprestimo}}</li>
+            <li><span>Devolução:</span> {{dataDevolucao}}</li>
+        </u>
+        <br>
+    {{/each}}
+</div>
