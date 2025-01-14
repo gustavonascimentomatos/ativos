@@ -1,14 +1,16 @@
+
 * {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #222;
     color: #fff;
+    
 }
 
 /* NAVBAR */
 #logo img {
-    height: 40px;
+    height: 60px;
 }
  
 #navbar {
@@ -425,3 +427,5 @@ footer.footer p {
     flex-wrap: wrap;
     font-weight: bold;
 }
+
+

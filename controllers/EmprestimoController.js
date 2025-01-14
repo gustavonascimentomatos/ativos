@@ -21,6 +21,8 @@ class EmprestimoController {
     static async createEmprestimoSave(req, res) {
 
         const id = req.body.ToughtId
+        const local = req.body.localizacao
+
         const emprestimo = {
             dataEmprestimo: req.body.dataEmprestimo,
             UserId: req.body.usuario,
@@ -28,7 +30,7 @@ class EmprestimoController {
             ativo: true
         }
 
-        const tought = { emprestado: true }
+        const tought = { emprestado: true, localizacao: local }
 
         try {
             await Emprestimo.create(emprestimo);
@@ -66,11 +68,13 @@ class EmprestimoController {
 
     static async removeEmprestimoSave(req, res) {
         const id = req.body.ToughtId
+        const local = req.body.localizacao
+
         const emprestimo = {
             dataDevolucao: req.body.dataDevolucao,
             ativo: false
         }
-        const tought = { emprestado: false }
+        const tought = { emprestado: false, localizacao: local }
 
         try {
             await Emprestimo.update(emprestimo, {

@@ -15,8 +15,8 @@
     {{#each emprestimo}}
         <u>
             <li><span>Usuário:</span> {{userName}}</li>
-            <li><span>Retirada:</span> {{dataEmprestimo}}</li>
-            <li><span>Devolução:</span> {{dataDevolucao}}</li>
+            <li><span>Retirada:</span> {{formatDate dataEmprestimo}}</li>
+            <li><span>Devolução:</span> {{formatDate dataDevolucao}}</li>
         </u>
         <br>
     {{/each}}

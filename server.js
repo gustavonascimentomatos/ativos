@@ -6,6 +6,7 @@ import FileStoreFactory from 'session-file-store';
 import path from 'path';
 import os from 'os';
 import flash from 'express-flash';
+import moment from 'moment';
 
 import Tought from './models/Toughts.js';
 import User from './models/User.js';
@@ -17,7 +18,11 @@ import emprestimoRoute from './routes/emprestimoRoutes.js'
 import ToughtController from './controllers/ToughtController.js';
 import AuthController from './controllers/AuthController.js';
 
-const hbs = create({ partialsDir: ['views/partials'] }); // Configura o Handlebars
+const hbs = create({ partialsDir: ['views/partials'],     helpers: {
+    formatDate: (date) => {
+        return moment(date).format('DD/MM/YYYY');
+    },
+},  }); // Configura o Handlebars
 const port = 3030; // Definição da porta
 const app = express(); // Invocação do express
 const FileStore = FileStoreFactory(session); // Definição para salvar arquivos de sessão
